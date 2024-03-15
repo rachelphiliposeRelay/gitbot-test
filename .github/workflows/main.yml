@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Testing index.js job!
     steps:
-      ##- name: My first step - check out repository
-        #uses: actions/checkout@v4
+      - name: My first step - check out repository
+        uses: actions/checkout
 
       - name: see wd
         id: file_loc
