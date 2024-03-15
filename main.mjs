@@ -1,28 +1,33 @@
-import email_mapping from './githubUserEmailMap.json' with { type: "json" };
-import axios  from 'axios';
-import moment  from 'moment';
-import {Octokit} from '@octokit/rest';
-import {App} from 'octokit';
-import dotenv from 'dotenv';
+const email_mapping = {"rachelphiliposeRelay": {
+    "fullName": "Rachel Philipose",
+    "profileStatus": "Active",
+    "relayEmail": "rachel.philipose@relayfi.com"
+  }};
+const axios = require('axios');
+const moment = require('moment');
+const {Octokit} = require('@octokit/rest');
+const {App} = require('octokit');
+
 
 const TRACKED_REPOSITORY = "gitbot-test"
 const REPOSITORY_OWNER = "rachelphiliposeRelay"
+
+const slack_token_secret = process.env.SLACK_TOKEN
+const private_key_secret = process.env.PRIVATE_KEY
 
 console.log("Outside the module");
 
 
 console.log("Inside the module!!");
-dotenv.config();
 
-console.log(process.env.APP_ID)
 const app_auth = new App({
-    appId: process.env.APP_ID,
-    privateKey: process.env.PRIVATE_KEY,
+    appId: 842146,
+    privateKey: private_key_secret,
 });
 
 async function getEmailFromGitHub(gh_username) {
 
-const octokit = await app_auth.getInstallationOctokit(48217668);
+const octokit = await app_auth.getInstallationOctokit(47775556);
 
 const res = await octokit.request(`/users/${gh_username}`);
 
@@ -48,7 +53,7 @@ if (!email) {
 
 const headers = {
     'Content-type': 'application/json',
-    'Authorization' : `Bearer ${process.env.SLACK_TOKEN} `,
+    'Authorization' : `Bearer ${slack_token_secret} `,
     "type": "url_verification"
 }
 
@@ -96,7 +101,7 @@ const pr_link = `<${data.html_url}|PR ${data.number}>` // hyperlinks url to text
 const text = `Hey <@${slack_mention}>! You have a pull request, ${pr_link} that needs to be merged from ` + "`" + `${data.head.ref} -> ${data.base.ref}` + "`.";
 
 const headers = {
-    'Authorization': `Bearer ${process.env.SLACK_TOKEN}`,
+    'Authorization': `Bearer ${slack_token_secret}`,
     'Content-type': 'application/x-www-form-urlencoded',
 }
 
@@ -114,7 +119,7 @@ const res = await axios.post('https://slack.com/api/chat.postMessage',
 
 async function sendReminders() {
 
-const octokit = await app_auth.getInstallationOctokit(48217668);
+const octokit = await app_auth.getInstallationOctokit(47775556);
 
 const slackWebhookURL = "https://hooks.slack.com/services/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"
 
