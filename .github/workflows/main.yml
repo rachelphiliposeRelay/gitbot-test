@@ -9,7 +9,9 @@ jobs:
     steps:
       - name: Trigger PR Reminders Step
         id: test
-        uses: rachelphiliposeRelay/gitbot-test-action@v1.1
+        - uses: actions/checkout@v3
+        - uses: ./action.yml
+        ##uses: rachelphiliposeRelay/gitbot-test
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
