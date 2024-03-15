@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+      - name: My first step - check out repository
+        uses: actions/checkout@v4
       - name: Trigger PR Reminders Step
         id: test
-        #- uses: actions/checkout@v3
-        #- uses: ./action.yml
-        uses: rachelphiliposeRelay/gitbot-test
+        uses: ./action.yml
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
