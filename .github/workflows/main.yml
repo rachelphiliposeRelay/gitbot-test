@@ -6,7 +6,7 @@ jobs:
     name: Testing index.js job!
     steps:
       - name: My first step - check out repository
-        uses: actions/checkout
+        uses: actions/checkout@v4
 
       - name: see wd
         id: file_loc
@@ -14,7 +14,7 @@ jobs:
         
       - name: Trigger PR Reminders Step
         id: test
-        uses: ./action.yml
+        uses: rachelphiliposeRelay/gitbot-test@main
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
