@@ -3,10 +3,10 @@ const email_mapping = {"rachelphiliposeRelay": {
     "profileStatus": "Active",
     "relayEmail": "rachel.philipose@relayfi.com"
   }};
-const axios = require('axios');
-const moment = require('moment');
-const {Octokit} = require('@octokit/rest');
-const {App} = require('octokit');
+import axios  from 'axios';
+import moment  from 'moment';
+import {App} from 'octokit';
+
 
 
 const TRACKED_REPOSITORY = "gitbot-test"
