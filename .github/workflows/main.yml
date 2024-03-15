@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Trigger PR Reminders Step
         id: test
-        uses: ./action.yml
+        uses: action.yml
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
