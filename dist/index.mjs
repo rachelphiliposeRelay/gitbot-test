@@ -31178,8 +31178,8 @@ const email_mapping = {"rachelphiliposeRelay": {
 
 
 
-const TRACKED_REPOSITORY = "gitbot-test"
-const REPOSITORY_OWNER = "rachelphiliposeRelay"
+const TRACKED_REPOSITORY = process.env.REPO_INFO.split("/")[1]
+const REPOSITORY_OWNER = process.env.REPO_INFO.split("/")[0]
 
 const slack_token_secret = process.env.SLACK_TOKEN
 const private_key_secret = process.env.PRIVATE_KEY

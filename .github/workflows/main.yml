@@ -1,4 +1,6 @@
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: '5 * * * *'
 
 jobs:
   hello_world_job:
@@ -18,5 +20,6 @@ jobs:
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          REPO_INFO: ${{ github.repository }}
         
 
