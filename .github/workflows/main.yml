@@ -1,6 +1,6 @@
 on: 
-  schedule:
-    - cron: "*/5 * * * *"
+  #schedule:
+    #- cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -8,15 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Testing index.js job!
     steps:
-      - name: My first step - check out repository
+      - name: First step, check out repository
         uses: actions/checkout@v4
-
-      - name: see wd
-        id: file_loc
-        run: ls
         
-      - name: Trigger PR Reminders Step
-        id: test
+      - name: Trigger PR Reminders
+        id: js script
         uses: rachelphiliposeRelay/gitbot-test@main
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
