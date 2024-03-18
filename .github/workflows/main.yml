@@ -1,0 +1,23 @@
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: Testing index.js job!
+    steps:
+      - name: My first step - check out repository
+        uses: actions/checkout@v4
+
+      - name: see wd
+        id: file_loc
+        run: ls
+        
+      - name: Trigger PR Reminders Step
+        id: test
+        uses: rachelphiliposeRelay/gitbot-test@main
+        env:
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          REPO_INFO: ${{ github.repository }}
