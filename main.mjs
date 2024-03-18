@@ -9,8 +9,8 @@ import {App} from 'octokit';
 
 
 
-const TRACKED_REPOSITORY = process.env.REPO_INFO.split("/")[1]
-const REPOSITORY_OWNER = process.env.REPO_INFO.split("/")[0]
+const TRACKED_REPOSITORY = String(process.env.REPO_INFO).split("/")[1]
+const REPOSITORY_OWNER = String(process.env.REPO_INFO).split("/")[0]
 
 const slack_token_secret = process.env.SLACK_TOKEN
 const private_key_secret = process.env.PRIVATE_KEY
