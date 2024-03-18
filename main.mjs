@@ -65,8 +65,6 @@ return user.data.user.id ? user.data.user.id : false;
 }
 
 async function createSlackChannelMessage(data) {
-const slackWebhookURL = "https://hooks.slack.com/services/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"
-
 try {
     const gh_email = await getEmailFromGitHub(data.user.login);
     var slack_user_id = await getSlackID(gh_email);
@@ -143,7 +141,7 @@ octokit
         const duration = moment.duration(now.diff(latest_edit));
         const weeks = duration.asWeeks();
 
-        if (weeks >= 1 && moment().format('dddd') == 'Friday') { //define the desired staleness of a PR before sending reminders 
+        if (weeks >= 1 && moment().format('dddd') == 'Monday') { //define the desired staleness of a PR before sending reminders 
             const { data } = await octokit.rest.pulls.get({
             owner: REPOSITORY_OWNER,
             repo: TRACKED_REPOSITORY,
@@ -162,7 +160,7 @@ octokit
         };
     };
 
-    if (moment().format('dddd') == 'Monday') {
+    if (moment().format('dddd') == 'Friday') {
         await axios.post(slackWebhookURL, {
         "text": slack_digest,
         });
