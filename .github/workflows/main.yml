@@ -12,11 +12,10 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Trigger PR Reminders
-        id: js script
+        id: runs-js-script
         uses: rachelphiliposeRelay/gitbot-test@main
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           REPO_INFO: ${{ github.repository }}
           SLACK_CHANNEL_ID: C06MC7JRUBA
-          
