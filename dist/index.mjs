@@ -31266,7 +31266,7 @@ try {
 const slack_mention = slack_user_id ? slack_user_id : data.user.login;
 
 const pr_link = `<${data.html_url}|PR ${data.number}>` // hyperlinks url to text eg: "PR 123"
-const text = `Hey <@${slack_mention}>! You have a pull request, ${pr_link} that needs to be merged from ` + "`" + `${data.head.ref} -> ${data.base.ref}` + "`.";
+const text = `Hey <@${slack_mention}>! You have a pull request, ${pr_link} in ` + "`"+ `${TRACKED_REPOSITORY}` + "`" +` waiting to be merged from ` + "`" + `${data.head.ref} -> ${data.base.ref}` + "`.";
 
 const headers = {
     'Authorization': `Bearer ${slack_token_secret}`,
