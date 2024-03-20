@@ -31248,7 +31248,7 @@ const slack_mention = slack_user_id ? slack_user_id : data.user.login;
 
 const pr_link = `<${data.html_url}|PR ${data.number}>` // hyperlinks url to text eg: "PR 123"
 //const text = `${pr_link} by <@${slack_mention}> needs to be merged from ${data.head.ref} -> ${data.base.ref} `
-const text = `${pr_link} by <@${slack_mention}> needs to be merged from` + "`" + `${data.head.ref} -> ${data.base.ref}` + "`.\n"
+const text = `${pr_link} by <@${slack_mention}> needs to be merged from ` + "`" + `${data.head.ref} -> ${data.base.ref}` + "`.\n"
 
 return text;
 
