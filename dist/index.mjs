@@ -31183,6 +31183,7 @@ const REPOSITORY_OWNER = String(process.env.REPO_INFO).split("/")[0]
 
 const slack_token_secret = process.env.SLACK_TOKEN
 const private_key_secret = process.env.PRIVATE_KEY
+const slack_channel_id = process.env.SLACK_CHANNEL_ID
 
 console.log("Outside the module");
 
@@ -31310,7 +31311,7 @@ octokit
         const duration = moment.duration(now.diff(latest_edit));
         const weeks = duration.asWeeks();
 
-        if (weeks >= 1 && moment().format('dddd') == 'Monday') { //define the desired staleness of a PR before sending reminders 
+        if (weeks >= 1 && moment().format('dddd') == 'Wednesday') { //define the desired staleness of a PR before sending reminders 
             const { data } = await octokit.rest.pulls.get({
             owner: REPOSITORY_OWNER,
             repo: TRACKED_REPOSITORY,
@@ -31329,9 +31330,19 @@ octokit
         };
     };
 
-    if (moment().format('dddd') == 'Friday') {
-        await lib_axios.post(slackWebhookURL, {
-        "text": slack_digest,
+    if (moment().format('dddd') == 'Wednesday') {
+        const headers = {
+            'Authorization': `Bearer ${slack_token_secret}`,
+            'Content-type': 'application/x-www-form-urlencoded',
+        }
+        
+        const res = await lib_axios.post('https://slack.com/api/chat.postMessage', 
+        {
+            "text": text,
+            "channel": slack_mention
+        },
+        {
+            headers:headers
         });
     }
 });
