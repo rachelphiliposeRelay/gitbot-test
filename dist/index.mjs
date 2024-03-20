@@ -31336,10 +31336,10 @@ octokit
             'Content-type': 'application/x-www-form-urlencoded',
         }
         
-        const res = await lib_axios.post('https://slack.com/api/chat.postMessage', 
+        await lib_axios.post('https://slack.com/api/chat.postMessage', 
         {
-            "text": text,
-            "channel": slack_mention
+            "text": slack_digest,
+            "channel": slack_channel_id
         },
         {
             headers:headers
