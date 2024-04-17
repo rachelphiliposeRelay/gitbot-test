@@ -15,7 +15,7 @@ jobs:
         id: runs-js-script
         uses: rachelphiliposeRelay/gitbot-test@main
         env:
-          REPO_INFO: gitbot-test
+          REPO_INFO: rachelphiliposeRelay/gitbot-test
           SLACK_CHANNEL_ID: C06MC7JRUBA
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
