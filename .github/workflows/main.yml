@@ -14,8 +14,11 @@ jobs:
       - name: Trigger PR Reminders
         id: runs-js-script
         uses: rachelphiliposeRelay/gitbot-test@main
-        env:
-          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          REPO_INFO: ${{ github.repository }}
+        with:
+          REPO_INFO: gitbot-test
           SLACK_CHANNEL_ID: C06MC7JRUBA
+        secrets:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          APP_ID: ${{ secrets.APP_ID }}
+          INSTALLATION_ID: ${{ secrets.INSTALLATION_ID }}
